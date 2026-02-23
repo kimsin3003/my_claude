@@ -1,7 +1,4 @@
 #!/bin/bash
-# Claude Code 설정 배포 스크립트
-# 사용법: bash install.sh
-
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -9,30 +6,21 @@ CLAUDE_DIR="$HOME/.claude"
 
 echo "=== Claude Code 설정 배포 ==="
 
-# .claude 디렉토리 생성
-mkdir -p "$CLAUDE_DIR"/{commands,skills,scripts}
+mkdir -p "$CLAUDE_DIR"/{commands,skills}
 
-# CLAUDE.md
 cp "$SCRIPT_DIR/claude/CLAUDE.md" "$CLAUDE_DIR/CLAUDE.md"
 echo "[OK] CLAUDE.md"
 
-# settings.json
 cp "$SCRIPT_DIR/claude/settings.json" "$CLAUDE_DIR/settings.json"
 echo "[OK] settings.json"
 
-# commands
-cp "$SCRIPT_DIR/claude/commands/"* "$CLAUDE_DIR/commands/" 2>/dev/null && echo "[OK] commands" || echo "[SKIP] commands (empty)"
+cp "$SCRIPT_DIR/claude/commands/"* "$CLAUDE_DIR/commands/" 2>/dev/null && echo "[OK] commands" || echo "[SKIP] commands"
 
-# skills (recursive)
-cp -r "$SCRIPT_DIR/claude/skills/"* "$CLAUDE_DIR/skills/" 2>/dev/null && echo "[OK] skills" || echo "[SKIP] skills (empty)"
+cp -r "$SCRIPT_DIR/claude/skills/"* "$CLAUDE_DIR/skills/" 2>/dev/null && echo "[OK] skills" || echo "[SKIP] skills"
 
-# scripts
-cp "$SCRIPT_DIR/claude/scripts/"* "$CLAUDE_DIR/scripts/" 2>/dev/null && echo "[OK] scripts" || echo "[SKIP] scripts (empty)"
-
-# MCP servers 안내
 echo ""
 echo "=== MCP 서버 설정 ==="
-echo "MCP 서버는 경로가 머신마다 다르므로 수동 설정이 필요합니다."
+echo "MCP 서버는 경로가 머신마다 다르므로 수동 설정 필요."
 echo "참고: claude/mcp-servers.json"
 echo ""
 echo "범용 MCP 서버 자동 추가:"

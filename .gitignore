@@ -25,3 +25,4 @@ projects/
 history.jsonl
 stats-cache.json
 .mcp.json
+claude/scripts/
