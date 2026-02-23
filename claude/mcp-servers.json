@@ -1,0 +1,71 @@
+{
+  "globalMcpServers": {
+    "screenshot": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "C:/Users/taewoo/mcp-servers/screenshot/index.mjs"
+      ],
+      "env": {}
+    },
+    "obsidian": {
+      "type": "sse",
+      "url": "http://localhost:22360/sse"
+    },
+    "atlassian": {
+      "type": "sse",
+      "url": "https://mcp.atlassian.com/v1/sse"
+    },
+    "unreal-analyzer": {
+      "command": "C:\\Users\\taewoo\\AppData\\Roaming\\fnm\\node-versions\\v20.20.0\\installation\\node.exe",
+      "args": [
+        "C:\\MCP\\unreal-analyzer-mcp\\build\\index.js"
+      ]
+    },
+    "unreal-remote-control": {
+      "command": "C:\\Users\\taewoo\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+      "args": [
+        "C:\\MCP\\unreal-remote-control-mcp\\server.py"
+      ]
+    },
+    "bear-relay": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "C:/Users/taewoo/claude-agent/mcp-server.js"
+      ]
+    },
+    "perforce": {
+      "command": "C:\\MCP\\p4-mcp-server\\p4-mcp-server-2025.2.2880005\\p4-mcp-server.exe",
+      "args": [
+        "--readonly",
+        "--allow-usage"
+      ],
+      "env": {
+        "P4PORT": "ssl:p4.projectbro.com:1666",
+        "P4USER": "taewoo",
+        "P4CONFIG": "p4config.txt"
+      }
+    },
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ]
+    }
+  },
+  "projectMcpServers": {
+    "C:/Users/taewoo": {
+      "codex-cli": {
+        "type": "stdio",
+        "command": "npx",
+        "args": [
+          "-y",
+          "codex-mcp-server"
+        ],
+        "env": {}
+      }
+    }
+  }
+}

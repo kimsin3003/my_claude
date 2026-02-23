@@ -1,0 +1,27 @@
+# Sensitive files
+*.credentials*
+config.json
+*.pid
+*.log
+
+# Cache & temp
+cache/
+debug/
+downloads/
+file-history/
+paste-cache/
+session-env/
+shell-snapshots/
+statsig/
+telemetry/
+todos/
+tasks/
+plans/
+backups/
+ide/
+homunculus/
+plugins/
+projects/
+history.jsonl
+stats-cache.json
+.mcp.json
