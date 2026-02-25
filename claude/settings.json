@@ -20,6 +20,17 @@
   "autoUpdatesChannel": "latest",
   "skipDangerousModePermissionPrompt": true,
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node C:/Users/taewoo/.claude/scripts/protect-mcpbridge.js"
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "matcher": "",
