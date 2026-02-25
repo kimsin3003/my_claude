@@ -13,36 +13,23 @@
     "defaultMode": "bypassPermissions"
   },
   "model": "opus",
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash ~/.claude/skills/continuous-learning-v2/hooks/observe.sh pre",
-            "timeout": 5000
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash ~/.claude/skills/continuous-learning-v2/hooks/observe.sh post",
-            "timeout": 5000
-          }
-        ]
-      }
-    ]
-  },
   "enabledPlugins": {
     "clangd-lsp@claude-plugins-official": true
   },
   "language": "korean",
   "autoUpdatesChannel": "latest",
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node C:/Users/taewoo/WorkHistory/context/backup-mcp.js"
+          }
+        ]
+      }
+    ]
+  }
 }
