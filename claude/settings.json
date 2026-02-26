@@ -13,12 +13,6 @@
     "defaultMode": "bypassPermissions"
   },
   "model": "opus",
-  "enabledPlugins": {
-    "clangd-lsp@claude-plugins-official": true
-  },
-  "language": "korean",
-  "autoUpdatesChannel": "latest",
-  "skipDangerousModePermissionPrompt": true,
   "hooks": {
     "PreToolUse": [
       {
@@ -42,5 +36,11 @@
         ]
       }
     ]
-  }
+  },
+  "enabledPlugins": {
+    "clangd-lsp@claude-plugins-official": true
+  },
+  "language": "korean",
+  "autoUpdatesChannel": "latest",
+  "skipDangerousModePermissionPrompt": true
 }
