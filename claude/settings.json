@@ -25,20 +25,27 @@
         ]
       }
     ],
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node C:/Users/taewoo/WorkHistory/context/backup-mcp.js"
-          }
-        ]
-      }
-    ]
+    "Stop": []
   },
   "enabledPlugins": {
-    "clangd-lsp@claude-plugins-official": true
+    "clangd-lsp@claude-plugins-official": true,
+    "atlassian@taewoo-custom": true,
+    "obsidian@taewoo-custom": true,
+    "unreal-analyzer@taewoo-custom": true,
+    "unreal-remote-control@taewoo-custom": true,
+    "bear-relay@taewoo-custom": true,
+    "context7@taewoo-custom": true,
+    "codex-cli@taewoo-custom": true,
+    "perforce@taewoo-custom": true,
+    "context7@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "taewoo-custom": {
+      "source": {
+        "source": "directory",
+        "path": "C:\\Users\\taewoo\\.claude\\plugins\\custom-mcp-marketplace"
+      }
+    }
   },
   "language": "korean",
   "autoUpdatesChannel": "latest",
