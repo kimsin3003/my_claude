@@ -1,7 +1,7 @@
 ---
 name: ue-python-pitfalls
 description: UE5 Python API 함정 자동 감지 및 회피. execute_python 또는 UE Python 코드 작성 시 활성화.
-version: 1.0.0
+version: 1.1.0
 ---
 
 # UE5 Python API Pitfalls
@@ -183,6 +183,35 @@ for name in ['Input1', 'Input2']:
     ci.import_text('(InputName="' + name + '")')
     new_inputs.append(ci)
 custom.set_editor_property('inputs', new_inputs)
+```
+
+### 13. AnimBP 노드 존재 ≠ 연결됨
+
+AnimGraph에서 `find_object`로 노드를 찾아도, 실제로 Root에 연결되어 평가되는지는 별개.
+
+```python
+# WRONG - 노드 존재만 확인
+obj = unreal.find_object(None, f"{graph_path}.AnimGraphNode_PoseDriver_0")
+if obj:
+    print("사용됨")  # 미연결 노드일 수 있음!
+
+# CORRECT - 컴파일된 노드 데이터 확인
+# 방법 1: AnimBlueprintGeneratedClass의 AnimNodeData에서 실제 컴파일된 노드 확인
+# 방법 2: 핀 연결(LinkedTo) 추적하여 Root까지 연결 체인 검증
+# 방법 3: 런타임 인스턴스에서 실제 평가되는 노드 확인 (PIE 필요)
+```
+
+**에셋 분석 시 반드시 연결 상태를 검증할 것.** 미연결 노드는 컴파일에서 제외되므로 성능 영향 없음.
+
+### 14. EdGraph.Nodes protected 접근 불가
+
+```python
+# WRONG
+anim_graph.get_editor_property('nodes')  # "protected and cannot be read"
+
+# CORRECT - find_object로 개별 노드 탐색
+for i in range(30):
+    obj = unreal.find_object(None, f"{graph_path}.AnimGraphNode_Type_{i}")
 ```
 
 ## Remote Control 설정 참고
