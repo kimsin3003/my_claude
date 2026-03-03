@@ -187,19 +187,26 @@ custom.set_editor_property('inputs', new_inputs)
 
 ### 13. AnimBP 노드 존재 ≠ 연결됨
 
-AnimGraph에서 `find_object`로 노드를 찾아도, 실제로 Root에 연결되어 평가되는지는 별개.
+AnimGraph에서 `find_object`나 `ObjectIterator`로 노드를 찾아도, 실제로 Root에 연결되어 평가되는지는 별개.
+**실 사례**: ABP_Hero_TPP에서 PoseDriver 44개 존재했으나 T3D BFS로 확인하니 **6개만 연결**, 38개는 미연결(비실행).
 
 ```python
-# WRONG - 노드 존재만 확인
+# WRONG - 노드 존재만 확인 (ObjectIterator도 마찬가지)
 obj = unreal.find_object(None, f"{graph_path}.AnimGraphNode_PoseDriver_0")
 if obj:
     print("사용됨")  # 미연결 노드일 수 있음!
 
-# CORRECT - 컴파일된 노드 데이터 확인
-# 방법 1: AnimBlueprintGeneratedClass의 AnimNodeData에서 실제 컴파일된 노드 확인
-# 방법 2: 핀 연결(LinkedTo) 추적하여 Root까지 연결 체인 검증
-# 방법 3: 런타임 인스턴스에서 실제 평가되는 노드 확인 (PIE 필요)
+# CORRECT - T3D Export + Pin LinkedTo BFS (MCPBridge 불필요)
+task = unreal.AssetExportTask()
+task.set_editor_property('object', animblueprint)
+task.set_editor_property('filename', output_path)  # .T3D
+task.set_editor_property('automated', True)
+task.set_editor_property('prompt', False)
+unreal.Exporter.run_asset_export_task(task)
+# T3D 텍스트 파싱 → Pin LinkedTo 추출 → Root부터 BFS → 연결 노드만 수집
 ```
+
+**검증 방법**: T3D 텍스트에서 각 노드의 `CustomProperties Pin` 라인 파싱, `LinkedTo(AnimGraphNode_XXX ...)` 필드로 연결 관계 추출, Root(Output Pose)부터 BFS 탐색.
 
 **에셋 분석 시 반드시 연결 상태를 검증할 것.** 미연결 노드는 컴파일에서 제외되므로 성능 영향 없음.
 

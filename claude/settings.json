@@ -37,7 +37,8 @@
     "context7@taewoo-custom": true,
     "codex-cli@taewoo-custom": true,
     "perforce@taewoo-custom": true,
-    "context7@claude-plugins-official": true
+    "context7@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "taewoo-custom": {
