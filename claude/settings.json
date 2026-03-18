@@ -39,7 +39,8 @@
     "code-simplifier@claude-plugins-official": true,
     "feature-dev@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": true,
-    "pbb-game-remote@taewoo-custom": true
+    "pbb-game-remote@taewoo-custom": true,
+    "unreal-analyzer@taewoo-custom": true
   },
   "extraKnownMarketplaces": {
     "taewoo-custom": {
