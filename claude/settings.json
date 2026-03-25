@@ -36,7 +36,9 @@
     "code-simplifier@claude-plugins-official": true,
     "feature-dev@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": true,
-    "unreal-analyzer@taewoo-custom": true
+    "unreal-analyzer@taewoo-custom": true,
+    "document-skills@anthropic-agent-skills": true,
+    "example-skills@anthropic-agent-skills": true
   },
   "extraKnownMarketplaces": {
     "taewoo-custom": {
