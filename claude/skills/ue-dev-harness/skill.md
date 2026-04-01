@@ -93,10 +93,15 @@ Planner 계획에 따라 구현. 도구 상세: `references/tool-reference.md`
 
 C++ 수정 후 에디터 반영 필수. **직접 빌드를 실행하고, 결과를 확인한다. 사용자에게 빌드를 요청하지 않는다.**
 
-1. `references/projects/{프로젝트}.md`에서 빌드 커맨드 확인
-2. Bash로 빌드 실행 (시간이 걸리므로 `run_in_background` 사용)
-3. 빌드 성공 확인 후 Phase 3 진행. 실패 시 에러 분석 → Generator로 복귀.
-4. **헤더(.h) 수정 시** 컴파일 시간이 큰 경우 사용자에게 사전 고지 (중단 아님, 고지만)
+1. **에디터 실행 중 → 라이브 코딩 우선** (`LiveCoding.Compile` 콘솔 커맨드)
+   - 라이브 코딩 후 **반드시 프로젝트 로그(`Saved/Logs/*.log`)에서 성공/실패 확인**
+   - `LogLiveCoding: Error: Live coding failed` → 라이브 코딩 실패. 헤더 수정 등이 원인.
+   - 라이브 코딩 실패 시 에디터 종료 → 증분 빌드(Build.bat) → 에디터 재시작
+2. **에디터 미실행 → 증분 빌드** (`references/projects/{프로젝트}.md`의 빌드 커맨드)
+3. **절대 clean/full rebuild 하지 않는다.**
+4. 빌드 성공 확인 후 Phase 3 진행. 실패 시 에러 분석 → Generator로 복귀.
+5. **헤더(.h) 수정 시** 컴파일 시간이 큰 경우 사용자에게 사전 고지 (중단 아님, 고지만)
+6. **에디터 실행 시 항상 `-unattended -CrashForUAT` 플래그 추가** — 크래시 dialog 없이 즉시 종료, exit code로 감지 가능
 
 빌드 불필요한 경우 (에셋만 수정, Python만 수정) → 바로 Phase 3.
 
