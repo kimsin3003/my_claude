@@ -30,23 +30,29 @@
   "enabledPlugins": {
     "atlassian@taewoo-custom": true,
     "unreal-remote-control@taewoo-custom": true,
-    "codex-cli@taewoo-custom": true,
     "perforce@taewoo-custom": true,
     "frontend-design@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": true,
     "feature-dev@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": true,
     "unreal-analyzer@taewoo-custom": true,
-    "document-skills@anthropic-agent-skills": true,
-    "example-skills@anthropic-agent-skills": true,
+    "document-skills@anthropic-agent-skills": false,
+    "example-skills@anthropic-agent-skills": false,
     "windows-mcp@taewoo-custom": true,
-    "slack@claude-plugins-official": true
+    "slack@claude-plugins-official": true,
+    "codex@openai-codex": true
   },
   "extraKnownMarketplaces": {
     "taewoo-custom": {
       "source": {
         "source": "directory",
         "path": "C:\\Users\\taewoo\\.claude\\plugins\\custom-mcp-marketplace"
+      }
+    },
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
       }
     }
   },
