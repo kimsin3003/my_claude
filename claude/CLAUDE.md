@@ -38,7 +38,8 @@
 - 컴파일이 오래걸릴수 있는 헤더 수정시에는 사용자에게 허가를 얻을것.
 
 ## UE 개발 하네스
-- UE 관련 작업(구현/수정/크래시/최적화)은 `ue-dev-harness` skill의 Phase를 따를것
+- **모든 언리얼 코드 작업 시 반드시 `ue-dev-harness` skill을 먼저 활성화할것** (코드 분석, 질문 답변 포함)
+- 활성화 후 해당 skill의 Phase를 따를것
 - **프로젝트별 빌드 커맨드, 테스트 절차, 운용 정보**는 `~/.claude/skills/ue-dev-harness/references/projects/`에 저장 (WorkHistory 아님)
 
 ## 자율성 원칙 (필수!)
