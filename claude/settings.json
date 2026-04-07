@@ -36,7 +36,6 @@
     "feature-dev@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": true,
     "unreal-analyzer@taewoo-custom": true,
-    "document-skills@anthropic-agent-skills": false,
     "example-skills@anthropic-agent-skills": false,
     "windows-mcp@taewoo-custom": true,
     "slack@claude-plugins-official": true,
