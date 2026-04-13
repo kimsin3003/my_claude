@@ -1,7 +1,7 @@
 ---
 name: pbb-sync-package
 description: PBB 패키지 최신화 — \\pubg-pds\PBB\Builds에서 최신 DEV game_dev 패키지를 찾아 복사하고, P4를 해당 리비전에 sync한다.
-version: 1.0.0
+version: 1.1.0
 user_invocable: true
 ---
 
@@ -36,8 +36,11 @@ ls "//pubg-pds/PBB/Builds/" | grep "CompileBuild_<config>_<stream>_SEL" | sort -
 
 ### 3. 패키지 복사
 
+**Git Bash에서 robocopy를 직접 호출하면 UNC 경로(`\\server\share`)가 MSYS2 경로 변환으로 깨진다.**
+skill 디렉토리의 `copy_pkg.bat`를 사용한다 (패키지명을 인자로 전달):
+
 ```bash
-robocopy '<네트워크경로>' 'C:\Users\taewoo\Desktop\<패키지명>' /E /MT:16 /NFL /NDL /NJH /NP
+cmd.exe //C "C:\\Users\\taewoo\\.claude\\skills\\pbb-sync-package\\copy_pkg.bat" "<패키지명>" 2>&1 | tail -20
 ```
 
 기존에 같은 이름 폴더가 있으면 복사 생략.
