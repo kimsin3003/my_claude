@@ -55,8 +55,12 @@
       }
     }
   },
+  "env": {
+    "CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION": "true"
+  },
   "language": "korean",
   "autoUpdatesChannel": "latest",
   "skipDangerousModePermissionPrompt": true,
-  "effortLevel": "high"
+  "effortLevel": "high",
+  "promptSuggestionEnabled": true
 }
