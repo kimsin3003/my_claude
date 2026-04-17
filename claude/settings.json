@@ -1,4 +1,7 @@
 {
+  "env": {
+    "CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION": "true"
+  },
   "permissions": {
     "allow": [
       "Bash",
@@ -55,12 +58,10 @@
       }
     }
   },
-  "env": {
-    "CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION": "true"
-  },
   "language": "korean",
+  "effortLevel": "high",
+  "promptSuggestionEnabled": true,
   "autoUpdatesChannel": "latest",
   "skipDangerousModePermissionPrompt": true,
-  "effortLevel": "high",
-  "promptSuggestionEnabled": true
+  "skipAutoPermissionPrompt": true
 }
