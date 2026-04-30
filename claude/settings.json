@@ -42,7 +42,8 @@
     "example-skills@anthropic-agent-skills": false,
     "windows-mcp@taewoo-custom": true,
     "slack@claude-plugins-official": true,
-    "codex@openai-codex": true
+    "codex@openai-codex": true,
+    "sentry@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "taewoo-custom": {
