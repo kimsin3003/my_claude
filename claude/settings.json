@@ -43,7 +43,8 @@
     "windows-mcp@taewoo-custom": true,
     "slack@claude-plugins-official": true,
     "codex@openai-codex": true,
-    "sentry@claude-plugins-official": true
+    "sentry@claude-plugins-official": true,
+    "gitlab@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "taewoo-custom": {
