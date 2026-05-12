@@ -1,7 +1,7 @@
 ---
 name: ue-dev-harness
 description: UE 개발 하네스. UE 관련 작업 시 활성화 — 기능 구현/수정, 크래시 분석, 최적화, 빌드/테스트 절차. 프로젝트별 빌드 커맨드/테스트 정보도 이 skill이 관리 (references/projects/).
-version: 3.1.0
+version: 3.4.0
 ---
 
 # UE Development Harness
@@ -21,6 +21,9 @@ version: 3.1.0
 3. **실패 시 자동 재시도** — Evaluator 실패 → Generator 복귀 (최대 3회)
 4. **모델이 잘 하는 건 가이드하지 않음** — 하네스는 모델이 혼자 못하는 부분만 보완
 5. **상속 체인은 root와 leaf까지 끝까지 추적** — 코드 분석 시 클래스/virtual 메서드 동작을 추론할 때, 상속 체인의 모든 단계를 root(인터페이스/추상 베이스)와 leaf(final/구체)까지 빠짐없이 따라간다. "직계 부모만" 또는 "base 본문만" 보고 단정 금지. virtual 메서드는 `grep "::MethodName"`으로 base와 모든 derived의 override/정의를 찾고, 각 본문이 super를 호출하는지, 어떤 derived를 호출하는지 모두 확인. `ExecuteXxx`처럼 specialized 이름은 base의 template-method 패턴 신호 — "진짜 `Execute`는 어디"를 별도 grep으로 검증. Explore agent 보고서는 trust 후 그대로 인용 금지 — 결론에 의존하는 핵심 함수는 직접 cpp 펴서 verify.
+6. **익명 namespace에 file-local helper 만들지 말 것** — cpp 파일 상단의 `namespace { ... }` 안에 file-scope static helper 함수를 새로 만들지 않는다. CSS/UE 코드 베이스 컨벤션에 어긋남. 대신 해당 클래스의 **private static 멤버 함수**로 둔다 (헤더에 선언, cpp에 정의). inline switch/loop로 본문에 직접 풀어쓰는 것도 OK. 한 번만 쓰이고 짧은 helper는 호출 지점에 inline. 클래스 외부에서 재사용이 명확히 필요한 경우에만 별도 utility 클래스/namespace를 고려하되, 새 namespace 신설은 신중히.
+7. **독립 작업은 N개 agent를 동시에 invoke해서 진짜 병렬화** — 같은 패턴의 독립 작업(파일 N≥3개에 동일한 변경, 또는 독립적인 N개 탐색)은 단일 메시지 안에서 **N개 Agent tool을 동시에 invoke**한다. 한 agent에 N개 파일을 위임하면 그 agent 내부에서 sequential 처리라 실질 병렬 X. **단일 메시지 multiple Agent invocations**가 true parallel. main thread sequential Edit은 N=2 이하인 경우만. 패턴 신호: "독립 N개 작업"이 보이면 즉시 N agent 분할.
+8. **주석은 거의 쓰지 않는다** — 기본값은 "주석 없음". 코드/함수 이름으로 이해할 수 있는 곳에는 절대 쓰지 않는다. WHAT 설명(코드가 무엇을 하는지) 금지. WHY 주석도 "**히스토리상 이 코드/순서가 반드시 있어야 한다**" 같이 외부 컨텍스트가 없으면 알 수 없는 강제 사항만 정당화된다. 추가 정당화 사례: workaround for specific bug, 숨겨진 invariant, 호출 순서 강제. 그 외("design rationale", "what this code does", "summary of approach")는 모두 PR 설명이나 commit 메시지로 옮긴다. **예외 — virtual 함수의 interface marker는 허용**: `// FGCObject`, `// FTickableGameObject`, `// ICharacterSkinPipeline` 같이 어느 인터페이스의 구현인지 표시하는 한 줄짜리 grouping marker는 가독성 위해 둘 수 있다. 클래스 docstring/long-form comment는 거의 항상 redundant — 핵심 design decision은 commit/PR에 두고 코드는 코드로만 말한다.
 
 ---
 
