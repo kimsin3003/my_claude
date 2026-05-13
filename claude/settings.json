@@ -29,7 +29,26 @@
         ]
       }
     ],
-    "Stop": []
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node C:/Users/taewoo/.claude/scripts/check-coding-rules.js"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node C:/Users/taewoo/.claude/scripts/check-code-analysis.js"
+          }
+        ]
+      }
+    ]
   },
   "enabledPlugins": {
     "atlassian@taewoo-custom": true,
